@@ -42,8 +42,8 @@ const Home = () => {
                 <td>{post.id}</td>
                 <td>{post.title}</td>
                 <td>{post.description}</td>
-                <td><Link to={`/posts/${post.id}`} className="btn btn-success">View</Link></td>
-                <td> <Link to={`/edit/${post.id}`} className="btn btn-warning">Edit</Link></td>
+                <td><Link to={`posts/${post.id}`} className="btn btn-success">View</Link></td>
+                <td><Link to={`/edit/${post.id}`} className="btn btn-warning">Edit</Link></td>
                 <td><button onClick={deletePostHandler.bind(null, post.id)} className="btn btn-danger">Delete</button></td >
             </tr>
         ))

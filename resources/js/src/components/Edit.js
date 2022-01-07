@@ -48,7 +48,6 @@ const Edit = () => {
     return (
         <AppContainer title="Edit">
             <form onSubmit={submitHandler}>
-                
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input type="text" className="form-control" id="title" placeholder="Title" defaultValue={titleInputRef} ref={titleInputRef} />
@@ -58,6 +57,7 @@ const Edit = () => {
                     <textarea className="form-control" id="description" placeholder="Description" defaultValue={descriptionInputRef} ref={descriptionInputRef}>
                     </textarea>
                 </div>
+                <br />
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary" disabled={loading}>Save</button>
                 </div>

@@ -44,6 +44,7 @@ const Add = () => {
                     <textarea className="form-control" id="description" placeholder="Description" ref={descriptionInputRef}>
                     </textarea>
                 </div>
+                <br />
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary" disabled={loading}>Add</button>
                 </div>
