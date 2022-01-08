@@ -47,8 +47,6 @@ const Edit = () => {
 
             setError(err.response.data.errors);
         }
-
-
     }
 
     return (
