@@ -5455,10 +5455,15 @@ var Add = function Add() {
   var descriptionInputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      loading = _useState2[0],
-      setLoading = _useState2[1];
+      error = _useState2[0],
+      setError = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1];
 
   var submitHandler = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(event) {
@@ -5479,24 +5484,23 @@ var Add = function Add() {
               });
 
             case 7:
+              setLoading(false);
               navigate('/');
-              _context.next = 13;
+              _context.next = 15;
               break;
 
-            case 10:
-              _context.prev = 10;
+            case 11:
+              _context.prev = 11;
               _context.t0 = _context["catch"](4);
-              console.error(_context.t0);
-
-            case 13:
               setLoading(false);
+              setError(_context.t0.response.data.errors);
 
-            case 14:
+            case 15:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[4, 10]]);
+      }, _callee, null, [[4, 11]]);
     }));
 
     return function submitHandler(_x) {
@@ -5519,6 +5523,9 @@ var Add = function Add() {
           id: "title",
           placeholder: "Title",
           ref: titleInputRef
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          className: "text-danger",
+          children: error.title ? error.title[0] : null
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "form-group",
@@ -5530,6 +5537,9 @@ var Add = function Add() {
           id: "description",
           placeholder: "Description",
           ref: descriptionInputRef
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          className: "text-danger",
+          children: error.description ? error.description[0] : null
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "form-group",
@@ -5604,6 +5614,11 @@ var Edit = function Edit() {
       loading = _useState2[0],
       setLoading = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      error = _useState4[0],
+      setError = _useState4[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     _api__WEBPACK_IMPORTED_MODULE_2__["default"].getOnePost(id).then(function (response) {
       var result = response.data;
@@ -5633,24 +5648,23 @@ var Edit = function Edit() {
               }, id);
 
             case 7:
+              setLoading(false);
               navigate('/');
-              _context.next = 13;
+              _context.next = 15;
               break;
 
-            case 10:
-              _context.prev = 10;
+            case 11:
+              _context.prev = 11;
               _context.t0 = _context["catch"](4);
-              console.error(_context.t0);
-
-            case 13:
               setLoading(false);
+              setError(_context.t0.response.data.errors);
 
-            case 14:
+            case 15:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[4, 10]]);
+      }, _callee, null, [[4, 11]]);
     }));
 
     return function submitHandler(_x) {
@@ -5674,6 +5688,9 @@ var Edit = function Edit() {
           placeholder: "Title",
           defaultValue: titleInputRef,
           ref: titleInputRef
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          className: "text-danger",
+          children: error.title ? error.title[0] : null
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "form-group",
@@ -5686,6 +5703,9 @@ var Edit = function Edit() {
           placeholder: "Description",
           defaultValue: descriptionInputRef,
           ref: descriptionInputRef
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          className: "text-danger",
+          children: error.description ? error.description[0] : null
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "form-group",

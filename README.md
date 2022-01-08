@@ -4,6 +4,5 @@ My first Laravel and React project. It has all the main Create, Read, Update and
 I used Laravel Sail as a development environment. <br>
 There are some features that have to be completed such as:<br>
 
--   Validation (both BE & FE)
 -   Some styling
 -   Write test cases

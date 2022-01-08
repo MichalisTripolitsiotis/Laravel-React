@@ -12,6 +12,8 @@ const Edit = () => {
 
     const [loading, setLoading] = useState(false);
 
+    const [error, setError] = useState([]);
+
     useEffect(() => {
         api.getOnePost(id).then((response) => {
             const result = response.data;
@@ -37,12 +39,16 @@ const Edit = () => {
                 description: enteredDescription
             }, id)
 
+            setLoading(false);
             navigate('/');
-        } catch (error) {
-            console.error(error);
+
+        } catch (err) {
+            setLoading(false);
+
+            setError(err.response.data.errors);
         }
 
-        setLoading(false);
+
     }
 
     return (
@@ -51,11 +57,13 @@ const Edit = () => {
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input type="text" className="form-control" id="title" placeholder="Title" defaultValue={titleInputRef} ref={titleInputRef} />
+                    <span className="text-danger">{error.title ? error.title[0] : null}</span>
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
                     <textarea className="form-control" id="description" placeholder="Description" defaultValue={descriptionInputRef} ref={descriptionInputRef}>
                     </textarea>
+                    <span className="text-danger">{error.description ? error.description[0] : null}</span>
                 </div>
                 <br />
                 <div className="form-group">

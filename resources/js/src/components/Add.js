@@ -7,6 +7,7 @@ const Add = () => {
     const titleInputRef = useRef();
     const descriptionInputRef = useRef();
     const navigate = useNavigate();
+    const [error, setError] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
@@ -24,12 +25,14 @@ const Add = () => {
                 description: enteredDescription
             })
 
+            setLoading(false);
             navigate('/');
-        } catch (error) {
-            console.error(error);
-        }
 
-        setLoading(false);
+        } catch (err) {
+            setLoading(false);
+
+            setError(err.response.data.errors);
+        }
     }
 
     return (
@@ -38,11 +41,13 @@ const Add = () => {
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input type="text" className="form-control" id="title" placeholder="Title" ref={titleInputRef} />
+                    <span className="text-danger">{error.title ? error.title[0] : null}</span>
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
                     <textarea className="form-control" id="description" placeholder="Description" ref={descriptionInputRef}>
                     </textarea>
+                    <span className="text-danger">{error.description ? error.description[0] : null}</span>
                 </div>
                 <br />
                 <div className="form-group">
