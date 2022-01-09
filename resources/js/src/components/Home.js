@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api';
+import Search from './Search';
 import AppContainer from './ui/AppContainer';
 
 const Home = () => {
@@ -70,7 +71,15 @@ const Home = () => {
     }
     return (
         <AppContainer title="Laravel & ReactJS">
-            <Link to="/add" className="btn btn-primary">Add</Link>
+            <div className="d-flex justify-content-between">
+                <div>
+                    <Link to="/add" className="btn btn-primary">Add</Link>
+                </div>
+                <div>
+                    <Search />
+                </div>
+            </div>
+            <br />
             <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
@@ -88,6 +97,7 @@ const Home = () => {
                         {renderPosts()}
                     </tbody>
                 </table>
+
             </div>
         </AppContainer>
 
