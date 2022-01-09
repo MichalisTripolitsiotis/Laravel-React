@@ -6,6 +6,7 @@ import AppContainer from "./ui/AppContainer";
 const Edit = () => {
     const titleInputRef = useRef();
     const descriptionInputRef = useRef();
+    const [completed, setCompleted] = useState();
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -22,6 +23,8 @@ const Edit = () => {
             // Define first old values
             titleInputRef.current.value = post.title;
             descriptionInputRef.current.value = post.description;
+            setCompleted(post.completed);
+
         })
     }, [])
 
@@ -33,10 +36,12 @@ const Edit = () => {
         const enteredTitle = titleInputRef.current.value;
         const enteredDescription = descriptionInputRef.current.value;
 
+
         try {
             await api.updatePost({
                 title: enteredTitle,
-                description: enteredDescription
+                description: enteredDescription,
+                completed: completed
             }, id)
 
             setLoading(false);
@@ -44,7 +49,6 @@ const Edit = () => {
 
         } catch (err) {
             setLoading(false);
-
             setError(err.response.data.errors);
         }
     }

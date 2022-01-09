@@ -5605,20 +5605,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Edit = function Edit() {
   var titleInputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
   var descriptionInputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      completed = _useState2[0],
+      setCompleted = _useState2[1];
+
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
 
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
       id = _useParams.id;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      loading = _useState2[0],
-      setLoading = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
-      error = _useState4[0],
-      setError = _useState4[1];
+      loading = _useState4[0],
+      setLoading = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      error = _useState6[0],
+      setError = _useState6[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     _api__WEBPACK_IMPORTED_MODULE_2__["default"].getOnePost(id).then(function (response) {
@@ -5627,6 +5633,7 @@ var Edit = function Edit() {
 
       titleInputRef.current.value = post.title;
       descriptionInputRef.current.value = post.description;
+      setCompleted(post.completed);
     });
   }, []);
 
@@ -5645,7 +5652,8 @@ var Edit = function Edit() {
               _context.next = 7;
               return _api__WEBPACK_IMPORTED_MODULE_2__["default"].updatePost({
                 title: enteredTitle,
-                description: enteredDescription
+                description: enteredDescription,
+                completed: completed
               }, id);
 
             case 7:
