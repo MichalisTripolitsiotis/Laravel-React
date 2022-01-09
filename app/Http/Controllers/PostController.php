@@ -29,7 +29,8 @@ class PostController extends Controller
     {
         Post::create([
             'title' => $request->title,
-            'description' => $request->description
+            'description' => $request->description,
+            'completed' => $request->completed
         ]);
 
         return response()->json(['data' => 'post created']);
@@ -69,7 +70,8 @@ class PostController extends Controller
         Post::where('id', $id)
             ->update([
                 'title' => $request->title,
-                'description' => $request->description
+                'description' => $request->description,
+                'completed' => $request->completed
             ]);
 
         return response()->json(['data' => 'post updated']);

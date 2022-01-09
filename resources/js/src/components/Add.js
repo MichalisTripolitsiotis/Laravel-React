@@ -22,7 +22,8 @@ const Add = () => {
         try {
             await api.addPost({
                 title: enteredTitle,
-                description: enteredDescription
+                description: enteredDescription,
+                completed: false
             })
 
             setLoading(false);

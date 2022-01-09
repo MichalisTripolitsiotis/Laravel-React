@@ -21,9 +21,9 @@ const View = () => {
 
     return (
         <AppContainer>
-            <div className="card">
+            <div className="card text-center">
                 <div className="card-body">
-                    <h5 className="card-title">{title}</h5>
+                    <h4 className="card-title">{title}</h4>
                     <p className="card-text">{description}</p>
                 </div>
             </div>

@@ -28,6 +28,20 @@ const Home = () => {
         })
     };
 
+
+    const changeCompletedHandler = async (post) => {
+        try {
+            await api.updatePost({
+                title: post.title,
+                description: post.description,
+                completed: !post.completed
+            }, post.id)
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     const renderPosts = () => {
         if (!posts || posts.length === 0) {
             return (
@@ -39,6 +53,12 @@ const Home = () => {
 
         return posts.map((post) => (
             <tr key={post.id}>
+                <td>
+                    <input type="checkbox"
+                        defaultChecked={post.completed}
+                        onChange={changeCompletedHandler.bind(null, post)}
+                    />
+                </td>
                 <td>{post.id}</td>
                 <td>{post.title}</td>
                 <td>{post.description}</td>
@@ -55,6 +75,7 @@ const Home = () => {
                 <table className="table table-striped">
                     <thead>
                         <tr>
+                            <th>Completed</th>
                             <th>ID</th>
                             <th>Title</th>
                             <th>Description</th>
