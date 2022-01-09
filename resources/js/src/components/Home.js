@@ -5,9 +5,7 @@ import AppContainer from './ui/AppContainer';
 
 const Home = () => {
     const [posts, setPosts] = useState(null);
-    const [firstRender, setFirstRender] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
-
 
     const fetchPosts = () => {
         api.getAllPosts().then(res => {
@@ -31,7 +29,6 @@ const Home = () => {
         })
     };
 
-
     const changeCompletedHandler = async (post) => {
         try {
             await api.updatePost({
@@ -46,12 +43,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        // No need to fetch all data for the first render
-        setFirstRender(false);
-
-        if (!firstRender) {
-            searchHandler(searchTerm);
-        }
+        searchHandler(searchTerm);
     }, [searchTerm])
 
     const changeHandler = event => {

@@ -5785,15 +5785,10 @@ var Home = function Home() {
       posts = _useState2[0],
       setPosts = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      firstRender = _useState4[0],
-      setFirstRender = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
-      _useState6 = _slicedToArray(_useState5, 2),
-      searchTerm = _useState6[0],
-      setSearchTerm = _useState6[1];
+      searchTerm = _useState4[0],
+      setSearchTerm = _useState4[1];
 
   var fetchPosts = function fetchPosts() {
     _api__WEBPACK_IMPORTED_MODULE_2__["default"].getAllPosts().then(function (res) {
@@ -5854,12 +5849,7 @@ var Home = function Home() {
   }();
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    // No need to fetch all data for the first render
-    setFirstRender(false);
-
-    if (!firstRender) {
-      searchHandler(searchTerm);
-    }
+    searchHandler(searchTerm);
   }, [searchTerm]);
 
   var changeHandler = function changeHandler(event) {
