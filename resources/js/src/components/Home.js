@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api';
-import Search from './Search';
 import AppContainer from './ui/AppContainer';
 
 const Home = () => {
     const [posts, setPosts] = useState(null);
+    const [firstRender, setFirstRender] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
+
 
     const fetchPosts = () => {
         api.getAllPosts().then(res => {
@@ -38,6 +40,30 @@ const Home = () => {
                 completed: !post.completed
             }, post.id)
 
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        // No need to fetch all data for the first render
+        setFirstRender(false);
+
+        if (!firstRender) {
+            searchHandler(searchTerm);
+        }
+    }, [searchTerm])
+
+    const changeHandler = event => {
+        setSearchTerm(event.target.value);
+    }
+
+    const searchHandler = async (post) => {
+        try {
+            await api.searchPost(post).then((res) => {
+                const result = res.data;
+                setPosts(result.data);
+            });
         } catch (err) {
             console.log(err);
         }
@@ -76,7 +102,18 @@ const Home = () => {
                     <Link to="/add" className="btn btn-primary">Add</Link>
                 </div>
                 <div>
-                    <Search />
+                    <div className="input-group">
+                        <div className="form-outline">
+                            <input type="search"
+                                className="form-control"
+                                placeholder="Search..."
+                                value={searchTerm}
+                                onChange={changeHandler} />
+                        </div>
+                        <button type="button" className="btn btn-primary">
+                            Search
+                        </button>
+                    </div>
                 </div>
             </div>
             <br />

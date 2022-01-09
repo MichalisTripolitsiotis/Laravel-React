@@ -89,4 +89,22 @@ class PostController extends Controller
 
         return response()->json(['data' => 'post deleted']);
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $search = $request->query('query');
+
+        $posts = Post::latest()
+            ->where('title', 'like', '%' . $search . '%')
+            ->orWhere('description', 'like', '%' . $search . '%')
+            ->get();
+
+        return PostResource::collection($posts);
+    }
 }

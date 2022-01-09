@@ -19,6 +19,9 @@ export default {
     },
     deletePost: (id) => {
         return axios.delete(`${BASE_URL}/posts/${id}`);
+    },
+    searchPost: (query) => {
+        return axios.get(`${BASE_URL}/posts/search?query=${query}`);
     }
 };
 
