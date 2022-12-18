@@ -4,7 +4,3 @@ My first Laravel and React project. It has all the main Create, Read, Update and
 You can dynamically mark a post as completed/uncompleted. I also made a search functionality that updates the table while you are typing either the title or the description.
 <br>
 I used Laravel Sail as a development environment. <br>
-There are some features that have to be completed such as:<br>
-
--   Some styling
--   Write test cases
